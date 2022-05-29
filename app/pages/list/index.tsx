@@ -1,9 +1,9 @@
-import { PrismaClient } from "@prisma/client";
 import { GetStaticProps, NextPage } from "next";
+import Link from "next/link";
+import prisma from "../../lib/prisma";
 import styles from "../list/list.module.css"
 
 export const getStaticProps: GetStaticProps = async () =>{
-    const prisma = new PrismaClient()
     const data = await prisma.soldItems.findMany()
     return {props: {data}}
   }
@@ -13,9 +13,9 @@ const List: NextPage = (props: any) => {
         <>
             <div className={styles.center}>
                 <div className={styles.header}>
-                    <a href="/">Home</a>
+                    <Link href="/">Home</Link>
                     <p className='is-active'>List</p>
-                    <a href="">Testing</a>
+                    <p>Testing</p>
                 </div>
                 <table className={`table ${styles.stripedTable}`} style={{width: '60%' ,textAlign:'center', color:'rgb(255, 223, 223)'}}>
                     <thead className="thead-dark" style={{color:'rgb(209, 82, 188)', fontSize:'32px'}}>

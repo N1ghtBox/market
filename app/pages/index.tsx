@@ -6,11 +6,10 @@ import { mapToDto } from '../dtomapper'
 import { formDataDto } from '../formDataDto'
 import { predictDto } from '../predictDto'
 import styles from '../styles/Home.module.css'
-import { PrismaClient } from '@prisma/client'
 import Router from 'next/router'
+import prisma from '../lib/prisma'
 
 export const getStaticProps: GetStaticProps = async () =>{
-  const prisma = new PrismaClient()
   const data = await prisma.soldItems.findMany({take:5})
   return {props: {data}}
 }
@@ -60,7 +59,7 @@ const Home: NextPage = (props: any) => {
       <div className={styles.header}>
         <p className='is-active'>Home</p>
         <a href="list">List</a>
-        <a href="">Testing</a>
+        <p>Testing</p>
       </div>
       <div className={styles.content}>
         <div>

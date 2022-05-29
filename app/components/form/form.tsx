@@ -27,7 +27,7 @@ export const Form = (props: IProps) =>{
     return (
         <div className={styles.columnContainer}>
             <h1 className="display">Enter Data</h1>
-            <p style={{margin:'0'}}>Fill up form to get results</p>
+            <p style={{margin:'0'}}>Fill out form to get results</p>
             
             <div className={styles.rowContainer}>
                 <label htmlFor="price">Price <br/>
