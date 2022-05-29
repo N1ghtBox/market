@@ -9,7 +9,7 @@ import styles from '../styles/Home.module.css'
 import Router from 'next/router'
 import prisma from '../lib/prisma'
 
-export const getStaticProps: GetStaticProps = async () =>{
+export const getServerSideProps = async () =>{
   const data = await prisma.soldItems.findMany({take:5})
   return {props: {data}}
 }

@@ -3,7 +3,7 @@ import Link from "next/link";
 import prisma from "../../lib/prisma";
 import styles from "../list/list.module.css"
 
-export const getStaticProps: GetStaticProps = async () =>{
+export const getServerSideProps = async () =>{
     const data = await prisma.soldItems.findMany()
     return {props: {data}}
   }
