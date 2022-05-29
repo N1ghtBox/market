@@ -1,4 +1,4 @@
-import type { GetStaticProps, NextPage } from 'next'
+import type { NextPage } from 'next'
 import Head from 'next/head'
 import { useEffect, useState } from 'react'
 import { Form } from '../components/form/form'
@@ -17,6 +17,7 @@ export const getServerSideProps = async () =>{
 const Home: NextPage = (props: any) => {
   const [predictData, setPredictData] = useState<predictDto>();
   const [predictedValue, setPredictedValue] = useState<number>();
+  const [success, setSuccess] = useState<boolean>(false);
 
   const onSubmit = (data: formDataDto) =>{
     let dto = mapToDto(data)
@@ -24,10 +25,10 @@ const Home: NextPage = (props: any) => {
   }
 
   const calculateValue = (data: predictDto): number =>{
-    return (data.price * Importance.priceImportance) + 
+    return Math.floor((data.price * Importance.priceImportance) + 
             (data.brand * Importance.brandImportance) + 
             (data.functionality * Importance.functionalityImportance) + 
-            (data.quality * Importance.qualityImportance)  
+            (data.quality * Importance.qualityImportance))  
   }
 
   useEffect(() => {
@@ -46,10 +47,19 @@ const Home: NextPage = (props: any) => {
         body: JSON.stringify(body),
       });
       await Router.push('/');
+      setSuccess(true);
     } catch (error) {
       console.error(error);
     }
+    setPredictedValue(undefined)
   };
+
+  useEffect(()=>{
+    setTimeout(()=>{
+      setSuccess(false)
+    }, 2900)
+  },[success])
+
   return (
     <div className={styles.container}>
       <Head>
@@ -64,6 +74,9 @@ const Home: NextPage = (props: any) => {
       <div className={styles.content}>
         <div>
           <Form onSubmit={onSubmit} canBeSaved={!!predictedValue} onAdd={onAdd}/>
+          {success ? <div className={`alert alert-success ${styles.fadeOut}`} role="alert" style={{height:'fit-content'}}>
+            Sucessfully saved
+          </div>:null}
         </div>
         <div className={styles.toLeft}>
           <div style={{height: '80%', width:'60%'}} >
@@ -86,7 +99,7 @@ const Importance = {
   brandImportance: 0.2 * multiplier,
   functionalityImportance: 0.3 * multiplier,
   qualityImportance: 0.3 * multiplier,
-  priceImportance: -0.2 * multiplier,
+  priceImportance: -0.2,
 }
 
 export default Home

@@ -1,4 +1,4 @@
-import { GetStaticProps, NextPage } from "next";
+import { NextPage } from "next";
 import Link from "next/link";
 import prisma from "../../lib/prisma";
 import styles from "../list/list.module.css"
@@ -25,13 +25,13 @@ const List: NextPage = (props: any) => {
                         <th scope="col">Amount</th>
                         </tr>
                     </thead>
-                    <tbody>
+                    <tbody style={{height:'50px'}}>
                         {
                             props.data?.map((item: any)=>(
                                 <tr key={item.id}>
-                                    <th scope="row" style={{maxWidth:'100px'}}>{item.id}</th>
-                                    <td style={{maxWidth:'200px'}}>{item.price}</td>
-                                    <td style={{maxWidth:'100px'}}>{item.amount}</td>
+                                    <th scope="row" >{item.id}</th>
+                                    <td >{item.price}</td>
+                                    <td >{item.amount}</td>
                                 </tr>
                             ))
                         }
