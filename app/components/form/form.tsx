@@ -82,10 +82,10 @@ export const Form = (props: IProps) =>{
             </div>
             </label>
             <div className={styles.rowContainer}>
-                <button className={styles.submitButton} disabled={!valid} onClick={()=> {props.onSubmit(formData); setFormdata({...defaultFormDataDto})}}>
+                <button className={styles.submitButton} disabled={!valid} onClick={()=> {props.onSubmit(formData); setFormdata({...defaultFormDataDto})}} id='sim'>
                     Simulate
                 </button>
-                <button className={styles.submitButton} disabled={!props.canBeSaved} onClick={(e)=> {props.onAdd(e); setFormdata({...defaultFormDataDto})}}>
+                <button className={styles.submitButton} disabled={!props.canBeSaved} onClick={(e)=> {props.onAdd(e); setFormdata({...defaultFormDataDto})}} id='save'>
                     Save
                 </button>
             </div>

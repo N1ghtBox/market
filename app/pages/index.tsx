@@ -98,7 +98,7 @@ const Home: NextPage = (props: any) => {
                 }
               </ul>
           </div>
-          <p style={{color:'rgb(255, 223, 223)', fontSize:'26px', width:'60%'}}>Your predicted value:<br/> <span style={{color:'rgb(209, 82, 188)', fontSize:'32px'}}>{predictedValue}</span> </p>
+          <p style={{color:'rgb(255, 223, 223)', fontSize:'26px', width:'60%'}}>Your predicted value:<br/> <span style={{color:'rgb(209, 82, 188)', fontSize:'32px'}} id='value'>{predictedValue}</span> </p>
         </div>
       </div>
     </div>
