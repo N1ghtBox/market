@@ -32,7 +32,7 @@ export const Form = (props: IProps) =>{
             
             <div className={styles.rowContainer}>
                 <label htmlFor="price">Price <br/>
-                <input type="number" id="price" name="price" autoComplete="off" value={formData?.price || ""} onChange={(e)=>handleInputChange(e.target.value, "price")}/></label>
+                <input type="number" id="price" name="price" autoComplete="off" value={formData?.price || ""} onChange={(e)=>handleInputChange(e.target.value, "price", 1)}/></label>
                 <label htmlFor="brand">Brand(1-5) <br/>
                 <input type="number" name="brand" autoComplete="off" value={formData?.brand || ""} onChange={(e)=>handleInputChange(e.target.value, "brand", 1, 5)}/></label>
             </div>
