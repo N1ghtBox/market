@@ -38,9 +38,24 @@ export const Form = (props: IProps) =>{
             </div>
             <label htmlFor="#functionality">Functionality(1-5) <br/>
             <div className={styles.rowContainer} id="functionality">
-                <input type="number" value={formData?.functionalityMarketDemand || ""} placeholder="Market demand" onChange={(e)=>handleInputChange(e.target.value, "functionalityMarketDemand",1,5)}/>
-                <input type="number" value={formData?.functionalityAdvanceLevel || ""} placeholder="Advance level" onChange={(e)=>handleInputChange(e.target.value, "functionalityAdvanceLevel",1,5)}/>
-                <input type="number" value={formData?.functionality || ""} placeholder="Functionality" onChange={(e)=>handleInputChange(e.target.value, "functionality",1,5)}/>
+                <input 
+                    type="number" 
+                    value={formData?.functionalityMarketDemand || ""} 
+                    name="Market"
+                    placeholder="Market demand" 
+                    onChange={(e)=>handleInputChange(e.target.value, "functionalityMarketDemand",1,5)}/>
+                <input 
+                    type="number" 
+                    value={formData?.functionalityAdvanceLevel || ""} 
+                    name="Advance"
+                    placeholder="Advance level" 
+                    onChange={(e)=>handleInputChange(e.target.value, "functionalityAdvanceLevel",1,5)}/>
+                <input 
+                    type="number" 
+                    value={formData?.functionality || ""} 
+                    name="Functionality"
+                    placeholder="Functionality" 
+                    onChange={(e)=>handleInputChange(e.target.value, "functionality",1,5)}/>
             </div>
             </label>
 
@@ -49,17 +64,20 @@ export const Form = (props: IProps) =>{
                 <input 
                     type="number" 
                     value={formData?.qualityWorkers || ""} 
-                    placeholder="Workers" 
+                    placeholder="Workers"
+                    name="Workers" 
                     onChange={(e)=>handleInputChange(e.target.value, "qualityWorkers",1,5)}/>
                 <input 
                     type="number" 
                     value={formData?.qualityMachines || ""} 
-                    placeholder="Machines" 
+                    placeholder="Machines"
+                    name="Machines" 
                     onChange={(e)=>handleInputChange(e.target.value, "qualityMachines",1,5)}/>
                 <input 
                     type="number" 
                     value={formData?.qualityMaterial || ""} 
                     placeholder="Materials" 
+                    name="Materials"
                     onChange={(e)=>handleInputChange(e.target.value, "qualityMaterial",1,5)}/>
             </div>
             </label>
