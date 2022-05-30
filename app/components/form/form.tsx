@@ -3,7 +3,7 @@ import { defaultFormDataDto, formDataDto } from "../../formDataDto"
 import styles from "../form/form.module.css"
 
 export const Form = (props: IProps) =>{
-    const [formData, setFormdata] = useState<formDataDto>(defaultFormDataDto);
+    const [formData, setFormdata] = useState<formDataDto>({...defaultFormDataDto});
     const [valid, setvalid] = useState<boolean>(false);
 
     const handleInputChange = (value: any, name: string, min?: number, max?: number) =>{
@@ -23,6 +23,7 @@ export const Form = (props: IProps) =>{
         }
         setvalid(true)
     },[formData])
+
 
     return (
         <div className={styles.columnContainer}>
@@ -63,10 +64,10 @@ export const Form = (props: IProps) =>{
             </div>
             </label>
             <div className={styles.rowContainer}>
-                <button className={styles.submitButton} disabled={!valid} onClick={()=> {props.onSubmit(formData); setFormdata(defaultFormDataDto)}}>
-                    Send
+                <button className={styles.submitButton} disabled={!valid} onClick={()=> {props.onSubmit(formData); setFormdata({...defaultFormDataDto})}}>
+                    Simulate
                 </button>
-                <button className={styles.submitButton} disabled={!props.canBeSaved} onClick={(e)=> {props.onAdd(e); setFormdata(defaultFormDataDto)}}>
+                <button className={styles.submitButton} disabled={!props.canBeSaved} onClick={(e)=> {props.onAdd(e); setFormdata({...defaultFormDataDto})}}>
                     Save
                 </button>
             </div>

@@ -18,6 +18,7 @@ const Home: NextPage = (props: any) => {
   const [predictData, setPredictData] = useState<predictDto>();
   const [predictedValue, setPredictedValue] = useState<number>();
   const [success, setSuccess] = useState<boolean>(false);
+  const [fail, setFail] = useState<boolean>(false);
 
   const onSubmit = (data: formDataDto) =>{
     let dto = mapToDto(data)
@@ -35,6 +36,7 @@ const Home: NextPage = (props: any) => {
     if(!predictData) return
     let localPredictedValue = calculateValue(predictData!)
     setPredictedValue(localPredictedValue)
+    if(localPredictedValue < 0 ) setFail(true)
   }, [predictData])
 
   const onAdd = async (e: React.SyntheticEvent) => {
@@ -60,6 +62,12 @@ const Home: NextPage = (props: any) => {
     }, 2900)
   },[success])
 
+  useEffect(()=>{
+    setTimeout(()=>{
+      setFail(false)
+    }, 2900)
+  },[fail])
+
   return (
     <div className={styles.container}>
       <Head>
@@ -73,9 +81,12 @@ const Home: NextPage = (props: any) => {
       </div>
       <div className={styles.content}>
         <div>
-          <Form onSubmit={onSubmit} canBeSaved={!!predictedValue} onAdd={onAdd}/>
+          <Form onSubmit={onSubmit} canBeSaved={!!predictedValue && predictedValue > 0} onAdd={onAdd}/>
           {success ? <div className={`alert alert-success ${styles.fadeOut}`} role="alert" style={{height:'fit-content'}}>
             Sucessfully saved
+          </div>:null}
+          {fail ? <div className={`alert alert-danger ${styles.fadeOut}`} role="alert" style={{height:'fit-content'}}>
+            Predicted value is lower than 0 
           </div>:null}
         </div>
         <div className={styles.toLeft}>
