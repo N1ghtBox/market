@@ -9,9 +9,10 @@ export const Form = (props: IProps) =>{
     const handleInputChange = (value: any, name: string, min?: number, max?: number) =>{
         let localFormData: any = formData ? formData : {}
         if(max) value = value.length > 1 && value[0] !== "-" ? value[value.length-1] : value
+        value = Math.abs(parseInt(value))
         if(max && value > max) value = max
         if(min && value < min) value = min
-        localFormData[name] = parseInt(value)
+        localFormData[name] = value
         setFormdata({...localFormData})
     }
 
